@@ -1,9 +1,9 @@
 class ModelMem {
     constructor() {
         this.palabras = [
-            { id: 1, palabra: "Hola" },
-            { id: 2, nombre: "cómo" },
-            { id: 3, nombre: "estás" },
+            { palabra: "Hola" },
+            { palabra: "cómo" },
+            { palabra: "estás" },
         ];
     }
 
@@ -18,7 +18,12 @@ class ModelMem {
     };
 
     eliminarPalabra = async (palabra) => {
-        this.palabras = this.palabras.filter((p) => p.palabra !== palabra);
+        // Si la palabra no existe, no la elimino, y devuelvo null
+        if (!this.palabras.find((p) => p.palabra === palabra.palabra)) {
+            return await Promise.resolve(null);
+        }
+
+        this.palabras = this.palabras.filter((p) => p.palabra !== palabra.palabra);
 
         return await Promise.resolve(palabra);
     };

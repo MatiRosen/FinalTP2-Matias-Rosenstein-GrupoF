@@ -9,7 +9,8 @@ class Servicio {
 
     obtenerPalabras = async () => {
         try {
-            const palabras = await this.model.obtenerProductos();
+            const palabras = await this.model.obtenerPalabras();
+
             return palabras.map((p) => p.palabra).join(" ");
         } catch (error) {
             throw error;
@@ -34,24 +35,41 @@ class Servicio {
 
     eliminarPalabra = async (palabra) => {
         try {
+            // Para poder validar la palabra antes de eliminarla, la voy a convertir en un objeto
+            palabra = { palabra };
             const res = validar(palabra);
             if (!res.result) {
                 throw new ValidationError(
                     `Campo inválido: ${res.error.message}`
                 );
             }
-            const palabraEliminado = await this.model.eliminarPalabra(palabra);
+            const palabraEliminada = await this.model.eliminarPalabra(palabra);
 
-            if (!palabraEliminado) {
+            if (!palabraEliminada) {
                 throw new WordNotFound(
-                    `La palabra no fue encontrada. Palabra: ${palabra}`
+                    `La palabra no fue encontrada.`
                 );
             }
-            return palabraEliminado;
+            return palabraEliminada;
         } catch (error) {
             throw error;
         }
     };
+
+    obtenerInfoPalabras = async () => {
+        try {
+            const palabras = await this.model.obtenerPalabras();
+
+            const info = palabras.reduce((acc, p) => {
+                acc[p.palabra] = p.cantidad;
+                return acc;
+            }, {});
+
+            return info;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default Servicio;

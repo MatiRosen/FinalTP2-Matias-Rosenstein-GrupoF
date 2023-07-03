@@ -8,9 +8,10 @@ class Router {
     }
 
     start() {
-        this.router.get("/:numero", this.controlador.obtenerPalabras);
+        this.router.get("/", this.controlador.obtenerPalabras);
         this.router.post("/", this.controlador.guardarPalabra);
         this.router.delete("/:palabra", this.controlador.eliminarPalabra);
+        this.router.get("/info", this.controlador.obtenerInfoPalabras)
         
         return this.router;
     }

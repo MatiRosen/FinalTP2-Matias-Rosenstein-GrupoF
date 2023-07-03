@@ -6,7 +6,7 @@ class Controlador {
         this.servicio = new Servicio(persistencia);
     }
 
-    obtenerPalabras = async (res) => {
+    obtenerPalabras = async (req, res) => {
         try {
             const palabras = await this.servicio.obtenerPalabras();
 
@@ -45,6 +45,16 @@ class Controlador {
             } else {
                 res.status(422).json({ errorMsg: error.message });
             }
+        }
+    };
+
+    obtenerInfoPalabras = async (req, res) => {
+        try {
+            const info = await this.servicio.obtenerInfoPalabras();
+
+            res.json(info); // Por defecto el status code es 200
+        } catch (error) {
+            res.status(500).json({ errorMsg: error.message });
         }
     };
 }

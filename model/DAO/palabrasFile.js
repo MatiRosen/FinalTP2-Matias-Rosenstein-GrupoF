@@ -10,10 +10,10 @@ class ModelFile {
         return await fs.promises.readFile(this.nombreArchivo, "utf-8");
     }
 
-    async escribirArchivo(productos) {
+    async escribirArchivo(palabras) {
         await fs.promises.writeFile(
             this.nombreArchivo,
-            JSON.stringify(productos, null, "\t")
+            JSON.stringify(palabras, null, "\t")
         );
     }
 
@@ -41,7 +41,7 @@ class ModelFile {
             throw new DatabaseError("No se pudo escribir el archivo");
         }
 
-        return producto;
+        return palabra;
     };
 
 
@@ -51,7 +51,11 @@ class ModelFile {
             palabras = JSON.parse(await this.leerArchivo());
         } catch {}
 
-        palabras = palabras.filter((p) => p.palabra !== palabra);
+        if (!palabras.find((p) => p.palabra === palabra.palabra)) {
+           return null;
+        }
+
+        palabras = palabras.filter((p) => p.palabra !== palabra.palabra);
 
         try {
             await this.escribirArchivo(palabras);
@@ -59,7 +63,7 @@ class ModelFile {
             throw new DatabaseError("No se pudo escribir el archivo");
         }
         
-        return producto;
+        return palabra;
     };
 }
 
