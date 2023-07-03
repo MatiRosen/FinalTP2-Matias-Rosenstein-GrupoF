@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Agregar turno</title>
+    </head>
+    <body>
+        <h1>Ingrese el turno</h1>
+        <br />
+        <form action="http://localhost:8080/api/turnos/" method="post">
+            <label for="dia">Dia</label>
+            <input
+                type="number"
+                name="dia"
+                id="dia"
+                min="1"
+                max="31"
+                required />
+            <br />
+            <label for="mes">Mes</label>
+            <input
+                type="number"
+                name="mes"
+                id="mes"
+                min="1"
+                max="12"
+                required />
+            <br />
+            <label for="hora">Hora</label>
+            <input
+                type="number"
+                name="hora"
+                id="hora"
+                min="0"
+                max="23"
+                required />
+            <br />
+            <label for="nombreResponsable">Nombre</label>
+            <input type="text" name="nombreResponsable" id="nombre" required />
+            <br />
+            <label for="telefonoResponsable">Telefono</label>
+            <input type="text" name="telefonoResponsable" id="telefono" required />
+            <br />
+            <label for="tipoServicio">Tipo</label>
+            <select name="tipoServicio" id="tipo">
+                <option value="programado">Programado</option>
+                <option value="auxilio">Auxilio</option>
+                <option value="cotización">Cotización</option>
+            </select>
+            <button>Enviar</button>
+        </form>
+    </body>
+</html>
