@@ -46,9 +46,7 @@ class Servicio {
             const palabraEliminada = await this.model.eliminarPalabra(palabra);
 
             if (!palabraEliminada) {
-                throw new WordNotFound(
-                    `La palabra no fue encontrada.`
-                );
+                throw new WordNotFound(`La palabra no fue encontrada.`);
             }
             return palabraEliminada;
         } catch (error) {
@@ -59,18 +57,17 @@ class Servicio {
     obtenerInfoPalabras = async () => {
         try {
             const palabras = await this.model.obtenerPalabras();
-            
+
             const info = palabras.reduce((acc, p) => {
                 acc[p.palabra] = acc[p.palabra] ? acc[p.palabra] + 1 : 1;
                 return acc;
             }, {});
 
-
             return info;
         } catch (error) {
             throw error;
         }
-    }
+    };
 }
 
 export default Servicio;

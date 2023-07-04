@@ -13,7 +13,8 @@
     "watch": "nodemon index.js",
     "test-manual": "node test/api.prueba.manual.js",
     "test-gen-palabra": "mocha test/palabras.test.js --timeout 10000",
-    "test-api-ext": "mocha test/api.ext.test.js --timeout 10000"
+    "test-api-ext": "mocha test/api.ext.test.js --timeout 10000",
+    "test-api-in": "mocha test/api.in.test.js --timeout 10000"
   },
   "author": "MatiRosen",
   "license": "MIT",

@@ -28,8 +28,9 @@ describe("Test API REST FUL", () => {
         it("Deberia retornar status 422", async () => {
             const palabraEnviada = "Esta palabra no es valida!";
 
-            const response = await request
-                .delete("/api/palabras/" + palabraEnviada)
+            const response = await request.delete(
+                "/api/palabras/" + palabraEnviada
+            );
             expect(response.status).to.eql(422);
         });
     });
