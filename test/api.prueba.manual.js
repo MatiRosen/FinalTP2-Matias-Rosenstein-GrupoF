@@ -2,7 +2,7 @@ import axios from "axios";
 
 const pruebaDeServidorConAxios = async () => {
 
-  const url = "https://aeropuerto.deno.dev/verif?num=123";
+  const url = "http://localhost:8080/api/palabras/";
     try {
         const response = await axios(url);
         const { status, data:body } = response;

@@ -59,11 +59,12 @@ class Servicio {
     obtenerInfoPalabras = async () => {
         try {
             const palabras = await this.model.obtenerPalabras();
-
+            
             const info = palabras.reduce((acc, p) => {
-                acc[p.palabra] = p.cantidad;
+                acc[p.palabra] = acc[p.palabra] ? acc[p.palabra] + 1 : 1;
                 return acc;
             }, {});
+
 
             return info;
         } catch (error) {

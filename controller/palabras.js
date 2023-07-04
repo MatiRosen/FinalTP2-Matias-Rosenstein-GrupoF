@@ -29,7 +29,7 @@ class Controlador {
             const palabraGuardada = await this.servicio.guardarPalabra(palabra);
             res.json(palabraGuardada); // Por defecto el status code es 200
         } catch (error) {
-            res.status(402).json({ errorMsg: error.message });
+            res.status(422).json({ errorMsg: error.message });
         }
     };
 
